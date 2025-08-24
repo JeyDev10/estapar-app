@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-import { LoaderCircle } from "lucide-react"
+import { LoaderCircle, LucideIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -14,7 +14,7 @@ const buttonVariants = cva(
         default: "bg-brand-primary text-white shadow-xs hover:bg-brand-primary/90",
         destructive:
           "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        secondary: "bg-brand-secondary text-white shadow-xs hover:bg-brand-secondary/80"
+        transparent: "text-gray-secondary bg-transparent hover:bg-bg-primary hover:text-gray-primary"
       },
       size: {
         default: "h-9 px-4 py-2 ha s-[>svg]:px-3",
@@ -36,17 +36,27 @@ function Button({
   size,
   asChild = false,
   isLoading = false,
+  icon = undefined,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
     isLoading?: boolean
+    icon?: LucideIcon
   }) {
   const Comp = asChild ? Slot : "button"
+  const Icon = icon ?? undefined
 
   return (
     <Comp data-slot="button" className={cn(buttonVariants({ variant, size, className }))} {...props}>
-      {isLoading ? <LoaderCircle className="animate-spin" /> : props.children}
+      {isLoading ? (
+        <LoaderCircle className="animate-spin" />
+      ) : (
+        <>
+          {Icon && <Icon />}
+          {props.children}
+        </>
+      )}
     </Comp>
   )
 }

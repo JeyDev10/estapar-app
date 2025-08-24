@@ -1,0 +1,57 @@
+{
+  "countRecords": 6,
+  "currentPage": 1,
+  "pageSize": 5,
+  "hasNextPage": 79684440,
+  "hasPreviousPage": 43184160,
+  "data": [
+    {
+      "code": "78",
+      "name": "Aeroporto de Guarulhos",
+      "address": "Amazonas Ana Júlia do Sul Johnson County 412 Maria Avenida Apto. 839",
+      "city": "Guarulhos",
+      "state": "SP",
+      "region": "tempor incididunt"
+    },
+    {
+      "code": "23",
+      "name": "Aeroporto Santos Dumont",
+      "address": "Amazonas Ana Júlia do Sul Johnson County 412 Maria Avenida Apto. 839",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "region": "tempor incididunt"
+    },
+    {
+      "code": "52",
+      "name": "Aeroporto de Fortaleza",
+      "address": "Amazonas Ana Júlia do Sul Johnson County 412 Maria Avenida Apto. 839",
+      "city": "Fortaleza",
+      "state": "CE",
+      "region": "tempor incididunt"
+    },
+    {
+      "code": "98",
+      "name": "Aeroporto Salgado Filho",
+      "address": "Amazonas Ana Júlia do Sul Johnson County 412 Maria Avenida Apto. 839",
+      "city": "Porto Alegre",
+      "state": "RS",
+      "region": "tempor incididunt"
+    },
+    {
+      "code": "86",
+      "name": "Aeroporto Afonso Pena",
+      "address": "Amazonas Ana Júlia do Sul Johnson County 412 Maria Avenida Apto. 839",
+      "city": "São José dos Pinhais",
+      "state": "PR",
+      "region": "tempor incididunt"
+    },
+    {
+      "code": "33",
+      "name": "Aeroporto JK",
+      "address": "Amazonas Ana Júlia do Sul Johnson County 412 Maria Avenida Apto. 839",
+      "city": "Brazília",
+      "state": "DF",
+      "region": "tempor incididunt"
+    }
+  ]
+}
