@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import { Building2 } from "lucide-react"
 
@@ -15,6 +16,7 @@ import {
 } from "@src/components/ui/sidebar"
 
 import { cn } from "@src/lib/utils"
+import { redirect } from "next/navigation"
 
 export function LayoutSidebar() {
   return (
@@ -29,7 +31,12 @@ export function LayoutSidebar() {
           <SidebarGroup>
             <SidebarMenu>
               <SidebarMenuItem className="w-full">
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton
+                  asChild
+                  onClick={() => {
+                    redirect("/garages")
+                  }}
+                >
                   <div>
                     <Building2 size={20} />
                     <span> Garagens</span>

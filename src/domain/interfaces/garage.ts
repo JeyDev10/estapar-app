@@ -6,3 +6,10 @@ export type GarageType = {
   state: string
   region: string
 }
+
+export type GarageDetailsType = {
+  subsidiary: string
+  countSpaces: number
+  occupiedSpaces: number
+  maxDiscountPercent: number
+} & GarageType

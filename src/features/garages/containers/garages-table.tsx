@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 import { Search, Eye } from "lucide-react"
 
-import { useGetGarages } from "@src/features/garages/hooks/useGetGarages"
+import { useGetGarages } from "@/src/features/garages/hooks/use-get-garages"
 import { GarageType } from "@src/domain/interfaces/garage"
 import garagesData from "@src/domain/garage-list.json"
 
@@ -15,10 +15,10 @@ import { GarageDetails } from "@src/features/garages/containers/garage-details"
 
 export function GaragesTable() {
   const [selectedGarage, setSelectedGarage] = useState<GarageType | undefined>()
-  const { handle, data, error } = useGetGarages()
+  const { handleRequest, data, error } = useGetGarages()
 
   useEffect(() => {
-    handle()
+    handleRequest({ pageSize: 10, currentPage: 1 })
   }, [])
 
   useEffect(() => {

@@ -1,16 +1,9 @@
 "use client"
 import { Building2 } from "lucide-react"
-import { useSession } from "next-auth/react"
 
 import { GaragesTable } from "@src/features/garages/containers"
-import { useEffect } from "react"
 
 export default function Garages() {
-  const session = useSession()
-
-  useEffect(() => {
-    console.log(session)
-  }, [session])
   return (
     <>
       <div>

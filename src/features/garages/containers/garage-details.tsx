@@ -23,33 +23,13 @@ export type GarageDetailsProps = {
   onClose?(): void
 }
 
-//https://mock.apidog.com/m1/1022746-0-default/garage
-
-async function getGarage(): Promise<GarageType | undefined> {
-  const res = await fetch(`https://mock.apidog.com/m1/1022746-0-default/garage?garageId=78`, {
-    headers: { "Content-Type": "application/json", authorization: "Bearer f5183967-b473-457d-953e-5a793b4919d3" }
-  })
-  const garageDetails: GarageType = await res.json()
-
-  return garageDetails
-}
-
 export function GarageDetails(props: GarageDetailsProps) {
   const [showDialog, setShowDialog] = useState(true)
-
-  async function handleGarages() {
-    const testGarege = await getGarage()
-    console.log(testGarege)
-  }
 
   function handleClose(show: boolean) {
     setShowDialog(show)
     if (!show) props.onClose?.()
   }
-
-  useEffect(() => {
-    handleGarages()
-  }, [])
 
   return (
     <DialogComponent open={showDialog} onOpenChange={handleClose}>
