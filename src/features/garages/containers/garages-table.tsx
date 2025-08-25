@@ -21,10 +21,6 @@ export function GaragesTable() {
     handleRequest({ pageSize: 10, currentPage: 1 })
   }, [])
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-
   const columns: ColumnConfig<GarageType>[] = [
     { id: "code", header: "Código" },
     { id: "name", header: "Nome" },
@@ -47,12 +43,12 @@ export function GaragesTable() {
     <div>
       <div className="flex items-center justify-between mt-4 rounded-sm border border-gray-tertiary px-4 py-6 mb-4">
         <div className="flex gap-2 items-center">
-          <Switch name="digital-monthly-payers" id="digital-monthly-payers" />
+          <Switch defaultChecked name="digital-monthly-payers" id="digital-monthly-payers" />
           <label htmlFor="digital-monthly-payers" className="font-semibold">
             Mensalista Digital
           </label>
         </div>
-        <span>25 registros</span>
+        <span>{`${data?.countRecords || 0} registros`}</span>
         <Input icon={Search} placeholder="Buscar por nome" className="max-w-sm" />
       </div>
       <DataTable<GarageType> data={garagesData.data as GarageType[]} columns={columns} />

@@ -1,10 +1,8 @@
-import NextAuth, { NextAuthConfig, Session, User } from "next-auth"
+import NextAuth, { NextAuthConfig, User } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import type { JWT } from "next-auth/jwt"
 
-import { UserAuthResponse, LoginForm } from "@src/domain/interfaces/auth"
-import { authConfig as importedAuthConfig } from "@/auth.config"
-
+import { LoginForm } from "@src/domain/interfaces/auth"
 declare module "next-auth" {
   interface Session {
     token: string
@@ -40,13 +38,14 @@ async function authenticate(username: string, password: string) {
 }
 
 export const authOptions: NextAuthConfig = {
-  ...importedAuthConfig,
+  pages: {
+    signIn: "/login"
+  },
   providers: [
     Credentials({
       async authorize(credentials) {
         const { username, password } = credentials as LoginForm
         const userAuth = await authenticate(username, password)
-
         if (!userAuth) {
           console.error("Invalid credentials")
           return null
@@ -73,14 +72,13 @@ export const authOptions: NextAuthConfig = {
     },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
-
-      console.log("logged auth", isLoggedIn)
+      console.log(nextUrl)
       const isLoginPage = nextUrl.pathname.startsWith("/login")
       if (!isLoginPage) {
         if (isLoggedIn) return true
         return false
       } else if (isLoggedIn) {
-        return Response.redirect(new URL("/", nextUrl))
+        return Response.redirect(new URL("/"))
       }
       return true
     }

@@ -3,7 +3,6 @@ import { Roboto } from "next/font/google"
 import { SessionProvider } from "next-auth/react"
 
 import { getAuth } from "../lib/actions/authenticate"
-import Service from "@src/services/service"
 
 import "./globals.css"
 

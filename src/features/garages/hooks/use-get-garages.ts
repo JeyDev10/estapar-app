@@ -2,7 +2,7 @@
 import { useState } from "react"
 
 import { useService } from "@/src/services/use-service"
-import { GarageType } from "@/src/domain/interfaces/garage"
+import { GarageType, GarageListResponse } from "@/src/domain/interfaces/garage"
 
 import { useRequest } from "@/src/hooks/use-request"
 
@@ -15,7 +15,7 @@ export type RequestGaregesParams = {
 export function useGetGarages() {
   const service = useService()
 
-  const { handleRequest, data, error } = useRequest<RequestGaregesParams, GarageType>({
+  const { handleRequest, data, error } = useRequest<RequestGaregesParams, GarageListResponse>({
     request: (params) => service.get("/GetGaragesPaginatedList", { ...params })
   })
 

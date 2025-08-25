@@ -21,14 +21,14 @@ export type TableSort = {
   desc: boolean
 }
 
-export type TableProps<T> = {
+export type RoundedTableProps<T> = {
   data: T[]
   columns: ColumnConfig<T>[]
   sort?: TableSort
   isPaginated?: boolean
 }
 
-export function DataTable<T>({ isPaginated = true, ...props }: TableProps<T>) {
+export function RoundedDataTable<T>({ isPaginated = true, ...props }: RoundedTableProps<T>) {
   const formattedColumns: ColumnDef<T>[] = useMemo(() => {
     return props.columns.map((column) => ({
       accessorKey: column.id,
@@ -52,11 +52,11 @@ export function DataTable<T>({ isPaginated = true, ...props }: TableProps<T>) {
   })
 
   return (
-    <div className="w-full">
-      <Table>
-        <TableHeader>
+    <div className="w-full border-2 border-gray-tertiary rounded-lg">
+      <Table className="border-none">
+        <TableHeader className="border-none font-extrabold text-gray-primary">
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
+            <TableRow className="" key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id}>
@@ -67,10 +67,10 @@ export function DataTable<T>({ isPaginated = true, ...props }: TableProps<T>) {
             </TableRow>
           ))}
         </TableHeader>
-        <TableBody>
+        <TableBody className="bg-bg-primary">
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+              <TableRow className="border-none" key={row.id} data-state={row.getIsSelected() && "selected"}>
                 {row.getVisibleCells().map((cell) => (
                   <TableCell className="truncate max-w-[50px]" key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

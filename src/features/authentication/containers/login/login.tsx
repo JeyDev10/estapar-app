@@ -6,7 +6,7 @@ import { User, Lock } from "lucide-react"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { useLogin } from "@src/features/authentication/hooks/useLogin"
+import { useLogin } from "@/src/features/authentication/hooks/use-login"
 import { Input, Button } from "@src/components/ui"
 import { LoginForm } from "@src/domain/interfaces/auth"
 

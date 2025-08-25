@@ -12,7 +12,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-brand-primary text-white shadow-xs hover:bg-brand-primary/90",
-        transparent: "text-gray-secondary bg-transparent hover:bg-bg-primary hover:text-gray-primary"
+        transparent: "text-gray-secondary bg-transparent hover:bg-bg-primary hover:text-gray-primary",
+        outline: "text-brand-tertiary bg-transparent border-brand-tertiary border hover:bg-brand-tertiary/5"
       },
       size: {
         default: "h-9 px-4 py-2 ha s-[>svg]:px-3",
