@@ -6,25 +6,13 @@ import { User, Lock } from "lucide-react"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { Input, Button } from "@/components/ui"
-
-async function getProjects() {
-  const res = await fetch(`https://mock.apidog.com/m1/1022746-1009361-default/`, {
-    cache: "no-store",
-    method: "post",
-    headers: { "Content-Type": "application/json", authorization: "Bearer f5183967-b473-457d-953e-5a793b4919d3" }
-  })
-  const projects = await res.json()
-
-  return projects
-}
-
-export type LoginForm = {
-  username: string
-  password: string
-}
+import { useLogin } from "@src/features/authentication/hooks/useLogin"
+import { Input, Button } from "@src/components/ui"
+import { LoginForm } from "@src/domain/interfaces/auth"
 
 export default function Login() {
+  const { handleLogIn } = useLogin()
+
   const loginSchema = z.object({
     username: z.string().min(4, "Usuário é obrigatório"),
     password: z.string().min(6, "Senha é obrigatória").max(20, "Senha deve ter no máximo 20 caracteres")
@@ -37,10 +25,8 @@ export default function Login() {
   } = useForm<LoginForm>({ resolver: zodResolver(loginSchema) })
 
   const onSubmit: SubmitHandler<LoginForm> = async (data) => {
-    console.log("Form data:", data)
+    handleLogIn(data)
   }
-
-  console.log(errors)
 
   return (
     <form

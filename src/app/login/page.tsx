@@ -1,4 +1,4 @@
-import Login from "@/features/authentication/containers/login/login"
+import Login from "@src/features/authentication/containers/login/login"
 
 export default function LoginPage() {
   return (

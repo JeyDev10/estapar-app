@@ -1,6 +1,6 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { LayoutSidebar } from "@/components/layout/sidebar"
-import { SignoutBar } from "@/components/layout/singout-bar"
+import { SidebarProvider, SidebarTrigger } from "@src/components/ui/sidebar"
+import { LayoutSidebar } from "@src/components/layout/sidebar"
+import { SignoutBar } from "@src/components/layout/singout-bar"
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
   return (

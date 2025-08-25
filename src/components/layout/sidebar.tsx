@@ -12,9 +12,9 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton
-} from "@/components/ui/sidebar"
+} from "@src/components/ui/sidebar"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@src/lib/utils"
 
 export function LayoutSidebar() {
   return (

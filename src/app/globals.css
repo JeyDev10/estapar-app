@@ -4,6 +4,7 @@
 @theme inline {
   --color-brand-primary: rgb(122, 211, 62);
   --color-brand-secondary: rgb(186, 186, 186);
+  --color-brand-tertiary: rgb(67, 196, 87);
 
   --color-bg-primary: rgb(249, 250, 251);
   --color-bg-secondary: rgb(255, 255, 255);

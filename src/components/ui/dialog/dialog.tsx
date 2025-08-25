@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@src/components/ui/button"
 import {
-  Dialog,
+  Dialog as DialogComponent,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -8,17 +8,22 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@/components/ui/dialog/base/dialog"
-import { Input } from "@/components/ui/input"
-import { Dialog2 } from "../../ui/dialog/dialog2"
+} from "@src/components/ui/dialog/base/dialog"
+import { Input } from "@src/components/ui/input"
 
-export function DialogDemo() {
+export type DialogProps = {
+  show: boolean
+  onClose?(): void
+}
+
+export function Dialog(props: DialogProps) {
+  function handleClose(show: boolean) {
+    if (!show) props.onClose?.()
+  }
+
   return (
-    <Dialog>
+    <DialogComponent open={props.show} onOpenChange={handleClose}>
       <form>
-        <DialogTrigger asChild>
-          <Button variant="transparent">Open Dialog</Button>
-        </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
@@ -40,10 +45,8 @@ export function DialogDemo() {
             </DialogClose>
             <Button type="submit">Save changes</Button>
           </DialogFooter>
-
-          <Dialog2 />
         </DialogContent>
       </form>
-    </Dialog>
+    </DialogComponent>
   )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import { useMemo } from "react"
 import {
   ColumnDef,
   flexRender,
@@ -10,31 +10,25 @@ import {
   getSortedRowModel,
   useReactTable
 } from "@tanstack/react-table"
-import { Eye } from "lucide-react"
 
-import { GarageType } from "@/domain/interfaces/garage"
-import { Button } from "@/components/ui/button"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table/base/table"
+import { Button } from "@src/components/ui/button"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@src/components/ui/table/base/table"
 
-import { ColumnConfig } from "@/components/ui/table/interfaces"
+import { ColumnConfig } from "@src/components/ui/table/interfaces"
+
+export type TableSort = {
+  id: string
+  desc: boolean
+}
 
 export type TableProps<T> = {
   data: T[]
   columns: ColumnConfig<T>[]
+  sort?: TableSort
 }
 
-const columns: ColumnConfig<GarageType>[] = [
-  { id: "code", header: "Código" },
-  { id: "name", header: "Nome" },
-  { id: "address", header: "Endereço" },
-  { id: "city", header: "Cidade" },
-  { id: "state", header: "UF" },
-  { id: "region", header: "Regional" },
-  { id: "actions", header: "Ações", format: (row) => <Eye size={16} onClick={() => console.log()} /> }
-]
-
 export function DataTable<T>(props: TableProps<T>) {
-  const formattedColumns: ColumnDef<T>[] = React.useMemo(() => {
+  const formattedColumns: ColumnDef<T>[] = useMemo(() => {
     return props.columns.map((column) => ({
       accessorKey: column.id,
       header: column.header,
@@ -52,12 +46,7 @@ export function DataTable<T>(props: TableProps<T>) {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     initialState: {
-      sorting: [
-        {
-          id: "code",
-          desc: false
-        }
-      ]
+      sorting: props.sort ? [props.sort] : []
     }
   })
 
@@ -90,7 +79,7 @@ export function DataTable<T>(props: TableProps<T>) {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
+              <TableCell colSpan={props.columns.length} className="h-24 text-center">
                 No results.
               </TableCell>
             </TableRow>

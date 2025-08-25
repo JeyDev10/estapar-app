@@ -1,8 +1,8 @@
 import { Building2, ArrowRight } from "lucide-react"
 
-import { Card } from "@/components/ui/card"
+import { Card } from "@src/components/ui/card"
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <div className="flex flex-col gap-4 max-w-[700px]">
       <h4 className="font-bold text-4xl">Bem vindo ao Portal Estapar B2B</h4>

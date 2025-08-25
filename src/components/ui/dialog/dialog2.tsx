@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@src/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "@/components/ui/dialog/base/dialog"
-import { Input } from "@/components/ui/input"
+} from "@src/components/ui/dialog/base/dialog"
+import { Input } from "@src/components/ui/input"
 
 export function Dialog2() {
   return (
