@@ -50,10 +50,6 @@ export function GarageDetails(props: GarageDetailsProps) {
     handleRequest({ id: props.garage.code })
   }, [])
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-
   const countsMap = useMemo(() => {
     const totSpaces = data?.countSpaces || 0
     const occupiedSpaces = data?.occupiedSpaces || 0

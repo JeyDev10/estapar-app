@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 
+import { LoaderCircle } from "lucide-react"
 import { useForm, Controller } from "react-hook-form"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -31,7 +32,7 @@ export type PlanFormProps = {
 }
 
 export function PlanForm(props: PlanFormProps) {
-  const { handleRequest, data } = useCreatePlan()
+  const { handleRequest, data, isLoading } = useCreatePlan()
 
   const [showDialog, setShowDialog] = useState(true)
 
@@ -81,15 +82,26 @@ export function PlanForm(props: PlanFormProps) {
   }
 
   const onSubmit = async (formData: z.input<typeof planFormSchema>) => {
-    console.log(formData)
-    handleRequest({})
+    try {
+      const planObject: Omit<PlanType, "idPlan"> = {
+        idGarage: props.plan?.idGarage ?? 0,
+        description: formData.description,
+        startValidity: formData.startValidity,
+        endValidity: formData.endValidity ?? null,
+        priceInCents: Number(formData.planValue) * 100,
+        active: false,
+        descriptionAvailable: "testando cadastro carro",
+        amountDailyCancellationInCents: Number(formData.cancelValue) * 100,
+        veichleType: Number(formData.veichleType),
+        totalVacancies: Number(formData.totalVacancies)
+      }
+
+      await handleRequest(planObject)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  useEffect(() => {
-    console.log("Request de criação", data)
-  }, [data])
-
-  console.log(watch())
   return (
     <div className="z-6">
       <DialogComponent open={showDialog} onOpenChange={onDialogChange}>
@@ -210,10 +222,12 @@ export function PlanForm(props: PlanFormProps) {
               </div>
             </div>
             <div className="flex items-end justify-end mt-4 gap-4">
-              <Button onClick={() => onDialogChange(false)} variant="input">
+              <Button onClick={() => onDialogChange(false)} variant="input" disabled={isLoading}>
                 Cancelar
               </Button>
-              <Button type="submit">Criar</Button>
+              <Button disabled={isLoading} type="submit">
+                {isLoading ? <LoaderCircle className="animate-spin" /> : "Criar"}
+              </Button>
             </div>
           </form>
         </DialogContent>
