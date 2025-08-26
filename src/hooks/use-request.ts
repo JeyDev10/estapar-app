@@ -1,12 +1,12 @@
 import { useState } from "react"
 
-export type UseRequestProps<ParamsType, ReturnType> = {
+export type UseRequestProps<ParamsType> = {
   request(params?: ParamsType): Promise<Response>
 }
 
-export function useRequest<ParamsType, ReturnType>(props: UseRequestProps<ParamsType, ReturnType>) {
+export function useRequest<ParamsType, ReturnType>(props: UseRequestProps<ParamsType>) {
   const [data, setData] = useState<ReturnType>()
-  const [error, setError] = useState<any>()
+  const [error, setError] = useState<unknown>()
   const [isLoading, setIsloading] = useState(false)
 
   async function handleRequest(params: ParamsType) {

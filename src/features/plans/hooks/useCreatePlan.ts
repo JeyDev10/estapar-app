@@ -21,7 +21,7 @@ import { useRequest } from "@/src/hooks/use-request"
 export function useCreatePlan() {
   const service = useService()
 
-  const { handleRequest, data, error, isLoading } = useRequest<any, PlanType>({
+  const { handleRequest, data, error, isLoading } = useRequest<PlanType, PlanType>({
     request: (params) => service.post("/plan", { ...teste })
   })
 
