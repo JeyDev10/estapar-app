@@ -6,7 +6,7 @@ import React from "react"
 // estado de carregamento dinâmico.
 export function GaragesTableSkeleton() {
   return (
-    <div className="flex justify-center p-4  font-sans antialiased w-full">
+    <div className="flex justify-center antialiased w-full overflow-x-scroll">
       <div className="w-full min-w-[950px]">
         <div data-slot="table-container" className="relative w-full overflow-x-auto">
           <table
@@ -19,7 +19,7 @@ export function GaragesTableSkeleton() {
             >
               <tr
                 data-slot="table-row"
-                className="hover:bg-muted/50 data-[state=selected]:bg-muted transition-colors border-b-gray-tertiary border-b"
+                className="data-[state=selected]:bg-muted transition-colors border-b-gray-tertiary border-b"
               >
                 <th data-slot="table-head" className="h-10 px-2 text-left align-middle font-medium whitespace-nowrap">
                   Código
@@ -50,7 +50,7 @@ export function GaragesTableSkeleton() {
                 <tr
                   key={rowIndex}
                   data-slot="table-row"
-                  className="animate-pulse hover:bg-muted/50 data-[state=selected]:bg-muted transition-colors border-b-gray-tertiary border-b"
+                  className="animate-pulse h-[56px] transition-colors border-b-gray-tertiary border-b"
                 >
                   <td data-slot="table-cell" className="p-2 align-middle whitespace-nowrap truncate max-w-[50px]">
                     <div className="h-4 bg-gray-200  rounded-md w-12"></div>
