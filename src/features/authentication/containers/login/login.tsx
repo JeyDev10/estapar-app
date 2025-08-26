@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image"
+import { useActionState } from "react"
 
 import { useForm, SubmitHandler } from "react-hook-form"
 import { User, Lock } from "lucide-react"
@@ -11,7 +12,7 @@ import { Input, Button } from "@src/components/ui"
 import { LoginForm } from "@src/domain/interfaces/auth"
 
 export default function Login() {
-  const { handleLogIn } = useLogin()
+  const { handleLogIn, isLoading } = useLogin()
 
   const loginSchema = z.object({
     username: z.string().min(4, "Usuário é obrigatório"),
@@ -41,7 +42,9 @@ export default function Login() {
         <div className="flex gap-4 flex-col">
           <Input label="Usuário" placeholder="Digite seu usuário" icon={User} {...register("username")} />
           <Input type="password" label="Senha" placeholder="Digite sua senha" icon={Lock} {...register("password")} />
-          <Button type="submit">Entrar</Button>
+          <Button disabled={isLoading} isLoading={isLoading} type="submit">
+            Entrar
+          </Button>
         </div>
       </div>
     </form>

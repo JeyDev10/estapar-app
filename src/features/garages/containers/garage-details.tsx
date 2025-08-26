@@ -9,7 +9,6 @@ import { PlanForm } from "@src/features/plans/containers/plan-form"
 import { CountCard } from "@src/features/garages/components"
 import { CountCardsSkeleton } from "@src/features/garages/components/count-cards-skeleton"
 import { GarageDetailsHeader } from "@src/features/garages/components/garage-details-header"
-import { Button } from "@src/components/ui/button"
 
 import { useGetGarage } from "@src/features/garages/hooks/use-get-garage-details"
 
