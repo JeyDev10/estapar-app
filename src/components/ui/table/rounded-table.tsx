@@ -16,7 +16,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 import { ColumnConfig } from "@src/components/ui/table/interfaces"
 
-export type TableSort = {
+export type RoundedTableSort = {
   id: string
   desc: boolean
 }
@@ -24,7 +24,7 @@ export type TableSort = {
 export type RoundedTableProps<T> = {
   data: T[]
   columns: ColumnConfig<T>[]
-  sort?: TableSort
+  sort?: RoundedTableSort
   isPaginated?: boolean
 }
 
@@ -56,7 +56,7 @@ export function RoundedDataTable<T>({ isPaginated = true, ...props }: RoundedTab
       <Table className="border-none">
         <TableHeader className="border-none font-extrabold text-gray-primary">
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow className="" key={headerGroup.id}>
+            <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id}>

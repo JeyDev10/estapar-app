@@ -8,7 +8,7 @@ export type GarageType = {
 }
 
 export type GarageListResponse = {
-  data: GarageType
+  data: GarageType[]
   countRecords: number
   currentPage: number
   pageSize: number

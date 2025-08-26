@@ -21,7 +21,8 @@ function Input({ className, type, label, icon, ...props }: InputProps) {
           "flex items-center gap-2",
           "px-4",
           "border-2 border-gray-tertiary  rounded-md bg-transparent",
-          "focus-within:border-gray-400"
+          "focus-within:border-gray-400",
+          props["aria-invalid"]?.valueOf() === true && "border-red-400"
         )}
       >
         {Icon && <Icon className="text-gray-secondary" />}
@@ -34,7 +35,7 @@ function Input({ className, type, label, icon, ...props }: InputProps) {
             "border-none",
             "placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground border-2  px-3 py-1 text-base transition-[color,box-shadow] outline-none  md:text-sm",
             "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
-            "aria-invalid:ring-destructive/20  aria-invalid:border-destructive",
+            "aria-invalid:ring-red/20  aria-invalid:border-red",
             className
           )}
           {...props}

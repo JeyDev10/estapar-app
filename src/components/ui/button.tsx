@@ -12,11 +12,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-brand-primary text-white shadow-xs hover:bg-brand-primary/90",
+        input: "bg-transparent border-2 border-gray-tertiary",
         transparent: "text-gray-secondary bg-transparent hover:bg-bg-primary hover:text-gray-primary",
-        outline: "text-brand-tertiary bg-transparent border-brand-tertiary border hover:bg-brand-tertiary/5"
+        outline: "text-brand-tertiary bg-transparent border-brand-tertiary border hover:bg-brand-tertiary/5",
+        invalid: "bg-transparent border-2 border-red-400"
       },
       size: {
-        default: "h-9 px-4 py-2 ha s-[>svg]:px-3",
+        default: "h-[40px] px-4 py-2 ha s-[>svg]:px-3",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9"

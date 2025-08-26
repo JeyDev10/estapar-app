@@ -12,9 +12,9 @@ export type RequestPlansParams = {
 export function useGetPlans() {
   const service = useService()
 
-  const { handleRequest, data, error } = useRequest<RequestPlansParams, PlanType[]>({
+  const { handleRequest, data, error, isLoading } = useRequest<RequestPlansParams, PlanType[]>({
     request: (params) => service.get("/plans", { ...params })
   })
 
-  return { handleRequest, data, error }
+  return { handleRequest, data, error, isLoading }
 }

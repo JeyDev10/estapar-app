@@ -154,7 +154,7 @@ function Sidebar({
       <div
         data-slot="sidebar-gap"
         className={cn(
-          "absolute md:relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
+          "absolute md:relative w-full md:w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
           "group-data-[collapsible=offcanvas]:w-0",
           "group-data-[side=right]:rotate-180",
           "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
@@ -163,10 +163,10 @@ function Sidebar({
       <div
         data-slot="sidebar-container"
         className={cn(
-          "fixed inset-y-0 z-2 h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear flex",
+          "fixed inset-y-0 z-2 h-svh w-full md:w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear flex",
           side === "left"
-            ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
-            : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
+            ? "left-0 md:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] group-data-[collapsible=offcanvas]:left-[calc(100%*-1)]"
+            : "right-0 md:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)] group-data-[collapsible=offcanvas]:right-[calc(100%*-1)]",
           "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l border-r-gray-tertiary",
           className
         )}
@@ -196,7 +196,7 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
         "size-7",
         "absolute top-[54] z-3",
         "transition-[left] duration-200 ease-linear",
-        open ? "left-[calc(var(--sidebar-width)-14px)]" : "left-1",
+        open ? " left-[calc(100%-30px)] md:left-[calc(var(--sidebar-width)-14px)]" : "left-1",
         className
       )}
       onClick={(event) => {

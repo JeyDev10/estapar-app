@@ -9,6 +9,8 @@ import { useGetPlans } from "@src/features/plans/hooks/useGetPlans"
 
 import { PlanType } from "@/src/domain/interfaces/plans"
 import { ColumnConfig } from "@src/components/ui/table/interfaces"
+
+import { PlansTableSkeleton } from "@src/features/plans/containers/plans-table-skeleton"
 import { useCreatePlan } from "@src/features/plans/hooks/useCreatePlan"
 
 export type PlansTableProps = {
@@ -16,7 +18,7 @@ export type PlansTableProps = {
 }
 
 export function PlansTable(props: PlansTableProps) {
-  const { handleRequest, data, error } = useGetPlans()
+  const { handleRequest, data, error, isLoading } = useGetPlans()
   // const { handleRequest: handleSave, data: dataSave } = useCreatePlan()
 
   useEffect(() => {
@@ -83,7 +85,11 @@ export function PlansTable(props: PlansTableProps) {
             Novo plano
           </Button>
         </div>
-        <RoundedDataTable<PlanType> data={data || []} columns={columns} isPaginated={false} />
+        {isLoading ? (
+          <PlansTableSkeleton />
+        ) : (
+          <RoundedDataTable<PlanType> data={data || []} columns={columns} isPaginated={false} />
+        )}
       </div>
     </div>
   )

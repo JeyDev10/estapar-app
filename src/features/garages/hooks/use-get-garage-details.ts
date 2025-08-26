@@ -9,8 +9,8 @@ import { useRequest } from "@/src/hooks/use-request"
 export function useGetGarage() {
   const service = useService()
 
-  const { handleRequest, data, error } = useRequest<{ id: string }, GarageDetailsType>({
+  const { handleRequest, data, error, isLoading } = useRequest<{ id: string }, GarageDetailsType>({
     request: (params) => service.get("/garage", { ...params })
   })
-  return { handleRequest, data, error }
+  return { handleRequest, data, error, isLoading }
 }

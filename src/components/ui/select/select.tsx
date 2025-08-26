@@ -10,20 +10,37 @@ import {
   SelectValue
 } from "@src/components/ui/select/base/base-select"
 
-export function Select() {
+import { cn } from "@/src/lib/utils"
+
+export type SelectOptions = {
+  label: string
+  value: string
+}
+
+export type SelectProps = {
+  options: SelectOptions[]
+  onSelectValue?(value: string): void
+  selectedValue?: string
+  placeholder?: string
+  defaultValue?: string
+  isInvalid?: boolean
+}
+
+export function Select({ placeholder = "Selecione um item", ...props }: SelectProps) {
   return (
-    <BaseSelect>
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select a fruit" />
+    <BaseSelect defaultValue={props.defaultValue} value={props.selectedValue} onValueChange={props.onSelectValue}>
+      <SelectTrigger className={cn("w-full", props.isInvalid && "border-red-400")}>
+        <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Fruits</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="blueberry">Blueberry</SelectItem>
-          <SelectItem value="grapes">Grapes</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem>
+          {props.options.map((option, index) => {
+            return (
+              <SelectItem key={`${option}-${index}`} value={option.value}>
+                {option.label}
+              </SelectItem>
+            )
+          })}
         </SelectGroup>
       </SelectContent>
     </BaseSelect>
