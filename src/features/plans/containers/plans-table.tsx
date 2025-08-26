@@ -11,19 +11,18 @@ import { PlanType } from "@/src/domain/interfaces/plans"
 import { ColumnConfig } from "@src/components/ui/table/interfaces"
 
 import { PlansTableSkeleton } from "@src/features/plans/containers/plans-table-skeleton"
-import { useCreatePlan } from "@src/features/plans/hooks/useCreatePlan"
 
 export type PlansTableProps = {
   onOpenForm?(plan?: PlanType): void
+  garageId: string
 }
 
 export function PlansTable(props: PlansTableProps) {
   const { handleRequest, data, error, isLoading } = useGetPlans()
-  // const { handleRequest: handleSave, data: dataSave } = useCreatePlan()
 
   useEffect(() => {
-    handleRequest({ garageId: "33" })
-  }, [])
+    handleRequest({ garageId: props.garageId })
+  }, [props.garageId])
 
   const columns: ColumnConfig<PlanType>[] = [
     {

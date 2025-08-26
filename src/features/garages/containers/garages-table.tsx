@@ -11,11 +11,12 @@ import { ColumnConfig } from "@src/components/ui/table/interfaces"
 import { Button } from "@src/components/ui"
 
 import { GarageDetails } from "@src/features/garages/containers/garage-details"
+import { GaragesTableSkeleton } from "@src/features/garages/containers/garages-table-skeleton"
 import { GarageTableHeader } from "@src/features/garages/components/garage-table-header"
 
 export function GaragesTable() {
   const [selectedGarage, setSelectedGarage] = useState<GarageType | undefined>()
-  const { handleRequest, data, error } = useGetGarages()
+  const { handleRequest, data, error, isLoading } = useGetGarages()
 
   useEffect(() => {
     handleRequest({ pageSize: 10, currentPage: 1 })
@@ -42,7 +43,12 @@ export function GaragesTable() {
   return (
     <div className="w-full">
       <GarageTableHeader recordsCount={data?.countRecords} />
-      <DataTable<GarageType> data={data?.data as GarageType[]} columns={columns} />
+      {isLoading ? (
+        <GaragesTableSkeleton />
+      ) : (
+        <DataTable<GarageType> data={data?.data as GarageType[]} columns={columns} />
+      )}
+
       {selectedGarage && <GarageDetails garage={selectedGarage} onClose={() => setSelectedGarage(undefined)} />}
     </div>
   )

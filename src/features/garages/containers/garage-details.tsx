@@ -92,7 +92,6 @@ export function GarageDetails(props: GarageDetailsProps) {
             region={props.garage.region}
             state={props.garage.state}
           />
-
           <div className="gap-4">
             <div className="bg-bg-primary flex items-end pt-1 pl-0.5 rounded-tl-md rounded-tr-md">
               <div
@@ -106,7 +105,6 @@ export function GarageDetails(props: GarageDetailsProps) {
               </div>
             </div>
           </div>
-
           {isLoading ? (
             <CountCardsSkeleton />
           ) : (
@@ -123,7 +121,7 @@ export function GarageDetails(props: GarageDetailsProps) {
               })}
             </div>
           )}
-          <PlansTable onOpenForm={handleOpenPlanForm} />
+          <PlansTable garageId={props.garage.code} onOpenForm={handleOpenPlanForm} />
         </DialogContent>
       </DialogComponent>
     </>

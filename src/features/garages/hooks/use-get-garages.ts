@@ -15,9 +15,9 @@ export type RequestGaregesParams = {
 export function useGetGarages() {
   const service = useService()
 
-  const { handleRequest, data, error } = useRequest<RequestGaregesParams, GarageListResponse>({
+  const { handleRequest, data, error, isLoading } = useRequest<RequestGaregesParams, GarageListResponse>({
     request: (params) => service.get("/GetGaragesPaginatedList", { ...params })
   })
 
-  return { handleRequest, data, error }
+  return { handleRequest, data, error, isLoading }
 }
