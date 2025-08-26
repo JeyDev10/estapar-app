@@ -6,7 +6,7 @@ import { cva, VariantProps } from "class-variance-authority"
 import { ChevronRight, ChevronLeft } from "lucide-react"
 
 import { useIsMobile } from "@src/hooks/use-mobile"
-import { cn } from "@src/lib/utils"
+import { cn } from "@src/lib/utils/style-utils"
 import { Button } from "@src/components/ui/button"
 import { Input } from "@src/components/ui/input"
 import { Separator } from "@src/components/ui/separator"

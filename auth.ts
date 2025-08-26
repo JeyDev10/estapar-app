@@ -72,7 +72,6 @@ export const authOptions: NextAuthConfig = {
     },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
-      console.log(nextUrl)
       const isLoginPage = nextUrl.pathname.startsWith("/login")
       if (!isLoginPage) {
         if (isLoggedIn) return true

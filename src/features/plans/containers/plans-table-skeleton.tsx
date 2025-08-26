@@ -1,68 +1,86 @@
+import React from "react"
+
 export function PlansTableSkeleton() {
-  const rows = Array.from({ length: 2 }, (_, index) => index)
+  const numRows = 3
+  const numCols = 7
+
+  const skeletonRows = Array.from({ length: numRows }, (_, rowIndex) => (
+    <tr
+      key={rowIndex}
+      className="hover:bg-muted/50 data-[state=selected]:bg-muted transition-colors border-b-gray-tertiary border-b"
+      data-state="false"
+    >
+      <td className="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] truncate max-w-[100px]">
+        <div className="flex items-center gap-2">
+          <div className="animate-pulse h-4 w-4 bg-gray-200 rounded-full"></div>
+          <div className="animate-pulse h-4 bg-gray-200 rounded w-2/3"></div>
+        </div>
+      </td>
+
+      {Array.from({ length: numCols - 1 }, (_, colIndex) => (
+        <td
+          key={colIndex}
+          className="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] truncate max-w-[100px]"
+        >
+          <div
+            className={`animate-pulse h-4 bg-gray-200 rounded ${
+              colIndex === 0
+                ? "w-1/2"
+                : colIndex === 1
+                ? "w-1/4"
+                : colIndex === 2
+                ? "w-1/4"
+                : colIndex === 3
+                ? "w-1/4"
+                : colIndex === 4
+                ? "w-1/3"
+                : "w-1/4"
+            }`}
+          ></div>
+        </td>
+      ))}
+    </tr>
+  ))
 
   return (
-    <div className="w-full border-2 border-gray-300 rounded-lg">
+    <div className="w-full border-2 border-gray-tertiary rounded-lg">
       <div data-slot="table-container" className="relative w-full overflow-x-auto">
         <table
           data-slot="table"
-          className="w-full caption-bottom text-sm rounded-md border border-gray-300 border-none"
+          className="w-full caption-bottom text-sm rounded-md border border-gray-tertiary border-none min-w-[1000px]"
         >
           <thead
             data-slot="table-header"
-            className="[&>tr]:border-b-2 border-t border-t-gray-300 border-none font-extrabold text-gray-800"
+            className="[&_tr]:border-b-2 border-t border-t-gray-tertiary border-none font-extrabold text-gray-primary"
           >
-            <tr data-slot="table-row" className="transition-colors border-b-gray-300 border-b">
-              <th data-slot="table-head" className="h-10 px-2 text-left align-middle font-medium whitespace-nowrap">
+            <tr
+              data-slot="table-row"
+              className="hover:bg-muted/50 data-[state=selected]:bg-muted transition-colors border-b-gray-tertiary border-b"
+            >
+              <th className="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
                 Descrição
               </th>
-              <th data-slot="table-head" className="h-10 px-2 text-left align-middle font-medium whitespace-nowrap">
+              <th className="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
                 Valor
               </th>
-              <th data-slot="table-head" className="h-10 px-2 text-left align-middle font-medium whitespace-nowrap">
+              <th className="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
                 Vagas
               </th>
-              <th data-slot="table-head" className="h-10 px-2 text-left align-middle font-medium whitespace-nowrap">
+              <th className="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+                Ocupadas
+              </th>
+              <th className="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+                Disponíveis
+              </th>
+              <th className="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
                 Status
               </th>
-              <th data-slot="table-head" className="h-10 px-2 text-left align-middle font-medium whitespace-nowrap">
+              <th className="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
                 Ações
               </th>
             </tr>
           </thead>
-          <tbody data-slot="table-body" className="bg-white">
-            {rows.map((_, index) => (
-              <tr
-                key={index}
-                data-slot="table-row"
-                className="transition-colors border-b-gray-300 border-b animate-pulse"
-              >
-                {/* Célula de Descrição - Simula o conteúdo com divs de placeholder */}
-                <td data-slot="table-cell" className="p-2 align-middle whitespace-nowrap max-w-[50px]">
-                  <div className="flex items-center gap-2">
-                    <div className="h-4 w-4 bg-gray-200 rounded-full"></div>
-                    <div className="h-4 bg-gray-200 rounded w-full max-w-[150px]"></div>
-                  </div>
-                </td>
-                {/* Célula de Valor */}
-                <td data-slot="table-cell" className="p-2 align-middle whitespace-nowrap max-w-[50px]">
-                  <div className="h-4 bg-gray-200 rounded w-full max-w-[80px]"></div>
-                </td>
-                {/* Célula de Vagas */}
-                <td data-slot="table-cell" className="p-2 align-middle whitespace-nowrap max-w-[50px]">
-                  <div className="h-4 bg-gray-200 rounded w-full max-w-[40px]"></div>
-                </td>
-                {/* Célula de Status - Simula o badge */}
-                <td data-slot="table-cell" className="p-2 align-middle whitespace-nowrap max-w-[50px]">
-                  <div className="h-6 w-16 bg-gray-200 rounded-full"></div>
-                </td>
-                {/* Célula de Ações - Simula o botão de edição */}
-                <td data-slot="table-cell" className="p-2 align-middle whitespace-nowrap max-w-[50px]">
-                  <div className="h-8 w-8 bg-gray-200 rounded-md"></div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          <tbody className="bg-bg-primary">{skeletonRows}</tbody>
         </table>
       </div>
     </div>

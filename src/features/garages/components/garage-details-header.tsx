@@ -19,11 +19,11 @@ export function GarageDetailsHeader(props: GarageDetailsHeaderProps) {
       </DialogTitle>
       <DialogDescription>{`Código: ${props.code} - `}</DialogDescription>
       <div>
-        <DialogDescription className="flex items-center gap-2 text-md">
+        <DialogDescription className="flex items-center gap-2  md:text-md">
           <MapPin size={16} />
           {props.address}
         </DialogDescription>
-        <DialogDescription className="flex items-center gap-2 text-md">
+        <DialogDescription className="flex items-center gap-2 md:text-md">
           <Building size={16} />
           {`Filial: ${props.region} - ${props.state}`}
         </DialogDescription>

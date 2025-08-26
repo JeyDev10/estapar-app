@@ -52,7 +52,7 @@ export function DataTable<T>({ isPaginated = true, ...props }: TableProps<T>) {
   })
 
   return (
-    <div className="w-full overflow-x-scroll">
+    <div className="w-full">
       {props.data && (
         <Table className="min-w-[950px]">
           <TableHeader>

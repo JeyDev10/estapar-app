@@ -10,7 +10,7 @@ import {
   SelectValue
 } from "@src/components/ui/select/base/base-select"
 
-import { cn } from "@/src/lib/utils"
+import { cn } from "@/src/lib/utils/style-utils"
 
 export type SelectOptions = {
   label: string

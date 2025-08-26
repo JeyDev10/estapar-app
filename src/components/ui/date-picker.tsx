@@ -1,12 +1,11 @@
 "use client"
 
-import * as React from "react"
+import { useEffect, useState } from "react"
 import { ChevronDownIcon } from "lucide-react"
 
 import { Button } from "@src/components/ui/button"
 import { Calendar } from "@src/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@src/components/ui/popover"
-import { cn } from "@/src/lib/utils"
 
 export type DatePickerProps = {
   onChangeDate(dateValue: string | undefined): void
@@ -17,11 +16,13 @@ export type DatePickerProps = {
 }
 
 export function DatePicker(props: DatePickerProps) {
-  const [open, setOpen] = React.useState(false)
-  const [date, setDate] = React.useState<Date | undefined>(undefined)
+  const [open, setOpen] = useState(false)
+  const [date, setDate] = useState<Date | undefined>(undefined)
 
-  React.useEffect(() => {
-    if (props.defaultValue) setDate(props.defaultValue)
+  useEffect(() => {
+    if (props.defaultValue) {
+      setDate(props.defaultValue)
+    }
   }, [props.defaultValue])
 
   return (

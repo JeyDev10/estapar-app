@@ -7,6 +7,7 @@ import { PlansTable } from "@src/features/plans/containers/plans-table"
 import { PlanForm } from "@src/features/plans/containers/plan-form"
 
 import { CountCard } from "@src/features/garages/components"
+import { CountCardsSkeleton } from "@src/features/garages/components/count-cards-skeleton"
 import { GarageDetailsHeader } from "@src/features/garages/components/garage-details-header"
 import { Button } from "@src/components/ui/button"
 
@@ -15,16 +16,8 @@ import { useGetGarage } from "@src/features/garages/hooks/use-get-garage-details
 import { GarageType } from "@/src/domain/interfaces/garage"
 import { PlanType } from "@/src/domain/interfaces/plans"
 
-import {
-  Dialog as DialogComponent,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle
-} from "@src/components/ui/dialog/base/dialog"
-import { cn } from "@/src/lib/utils"
+import { Dialog as DialogComponent, DialogContent } from "@src/components/ui/dialog/base/dialog"
+import { cn } from "@/src/lib/utils/style-utils"
 
 export type GarageDetailsProps = {
   garage: GarageType
@@ -91,7 +84,7 @@ export function GarageDetails(props: GarageDetailsProps) {
       )}
 
       <DialogComponent open={showDialog} onOpenChange={handleClose}>
-        <DialogContent className="max-w-[1280px]">
+        <DialogContent className="max-w-[1280] w-full">
           <GarageDetailsHeader
             name={props.garage.name}
             code={props.garage.code}
@@ -100,7 +93,7 @@ export function GarageDetails(props: GarageDetailsProps) {
             state={props.garage.state}
           />
 
-          <div className="grid gap-4">
+          <div className="gap-4">
             <div className="bg-bg-primary flex items-end pt-1 pl-0.5 rounded-tl-md rounded-tr-md">
               <div
                 className={cn(
@@ -114,20 +107,22 @@ export function GarageDetails(props: GarageDetailsProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
-            {countsMap.map((countItem, index) => {
-              return (
-                <>
+          {isLoading ? (
+            <CountCardsSkeleton />
+          ) : (
+            <div className="grid grid-cols-3 gap-4">
+              {countsMap.map((countItem, index) => {
+                return (
                   <CountCard
                     key={`${countItem.label}-${index}`}
                     label={countItem.label}
                     count={countItem.count}
                     icon={countItem.icon}
                   />
-                </>
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
+          )}
           <PlansTable onOpenForm={handleOpenPlanForm} />
         </DialogContent>
       </DialogComponent>

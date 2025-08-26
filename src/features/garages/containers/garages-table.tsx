@@ -40,7 +40,7 @@ export function GaragesTable() {
   ]
 
   return (
-    <div>
+    <div className="w-full">
       <GarageTableHeader recordsCount={data?.countRecords} />
       <DataTable<GarageType> data={data?.data as GarageType[]} columns={columns} />
       {selectedGarage && <GarageDetails garage={selectedGarage} onClose={() => setSelectedGarage(undefined)} />}

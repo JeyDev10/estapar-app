@@ -50,6 +50,12 @@ export function PlansTable(props: PlansTableProps) {
     },
     { id: "totalVacancies", header: "Vagas" },
     {
+      id: "occupiedVacancie",
+      header: "Ocupadas",
+      format: (row) => "0"
+    },
+    { id: "availableVacancie", header: "Disponíveis", format: (row) => row.totalVacancies.toString() },
+    {
       id: "active",
       header: "Status",
       format: (row) => (
@@ -72,12 +78,12 @@ export function PlansTable(props: PlansTableProps) {
   return (
     <div className="flex w-full border-t border-t-gray-tertiary ">
       <div className="w-[15%] bg-bg-primary rounded-tl-md border-r border-r-gray-tertiary">
-        <div className="p-2 flex gap-2 border-l-4 bg-bg-secondary border-l-brand-tertiary rounded-tl-md">
-          <CircleDollarSign />
+        <div className="p-2 flex items-center gap-2 border-l-4 bg-bg-secondary border-l-brand-tertiary rounded-tl-md max-sm:hidden">
+          <CircleDollarSign className="w-2 h-2 md:w-4 md:h-4" />
           Planos
         </div>
       </div>
-      <div className="flex flex-col gap-4 w-[85%] mt-2 pl-6">
+      <div className="flex flex-col gap-4 w-[85%] max-sm:w-[100%] mt-2 pl-6">
         <div className="flex items-center justify-between">
           <span className="text-lg font-bold">Planos Disponíveis</span>
           <Button variant="outline" onClick={() => props.onOpenForm?.()}>

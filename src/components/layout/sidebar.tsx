@@ -15,7 +15,7 @@ import {
   SidebarMenuButton
 } from "@src/components/ui/sidebar"
 
-import { cn } from "@src/lib/utils"
+import { cn } from "@src/lib/utils/style-utils"
 import { redirect } from "next/navigation"
 
 export function LayoutSidebar() {

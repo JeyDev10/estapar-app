@@ -4,7 +4,7 @@ import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { XIcon } from "lucide-react"
 
-import { cn } from "@src/lib/utils"
+import { cn } from "@src/lib/utils/style-utils"
 
 function Dialog({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
@@ -49,7 +49,7 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          "bg-bg-secondary data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[5%] left-[50%] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%]  gap-4 rounded-lg p-6 shadow-lg duration-200",
+          "bg-bg-secondary data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[5%] left-[50%] flex flex-col max-w-[calc(100%-2rem)] translate-x-[-50%]  gap-4 rounded-lg p-6 shadow-lg duration-200",
           "z-4",
           className
         )}

@@ -53,7 +53,7 @@ export function RoundedDataTable<T>({ isPaginated = true, ...props }: RoundedTab
 
   return (
     <div className="w-full border-2 border-gray-tertiary rounded-lg">
-      <Table className="border-none">
+      <Table className="border-none min-w-[1000px]">
         <TableHeader className="border-none font-extrabold text-gray-primary">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -72,7 +72,7 @@ export function RoundedDataTable<T>({ isPaginated = true, ...props }: RoundedTab
             table.getRowModel().rows.map((row) => (
               <TableRow className="border-none" key={row.id} data-state={row.getIsSelected() && "selected"}>
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell className="truncate max-w-[50px]" key={cell.id}>
+                  <TableCell className="truncate max-w-[100px]" key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

@@ -6,7 +6,6 @@ import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { Button, Input, Switch, Select, DatePicker } from "@src/components/ui"
-
 import {
   Dialog as DialogComponent,
   DialogContent,
@@ -14,8 +13,11 @@ import {
   DialogHeader,
   DialogTitle
 } from "@src/components/ui/dialog/base/dialog"
+import { useCreatePlan } from "@/src/features/plans/hooks/useCreatePlan"
 
 import { PlanType } from "@/src/domain/interfaces/plans"
+
+import { dateUtils } from "@/src/lib/utils/date-utils"
 
 export type PlanFormType = Omit<PlanType, "amountDailyCancellationInCents" | "priceInCents"> & {
   planValue: string
@@ -29,6 +31,8 @@ export type PlanFormProps = {
 }
 
 export function PlanForm(props: PlanFormProps) {
+  const { handleRequest, data } = useCreatePlan()
+
   const [showDialog, setShowDialog] = useState(true)
 
   const planFormSchema = z.object({
@@ -41,8 +45,8 @@ export function PlanForm(props: PlanFormProps) {
       .number("Adicione o valor do plano.")
       .nonnegative("O valor do cancelamento não pode ser negativo."),
     description: z.string("Adicione uma descrição").nonempty("Adicione uma descrição"),
-    endValidity: z.coerce.date().nullish(),
-    startValidity: z.coerce.date("Adicione uma data de Início."),
+    endValidity: z.string().refine(dateUtils.validateDateString).nullish(),
+    startValidity: z.string().refine(dateUtils.validateDateString),
     totalVacancies: z.preprocess((val) => {
       if (typeof val === "string" && val.trim() === "") {
         return undefined
@@ -60,6 +64,9 @@ export function PlanForm(props: PlanFormProps) {
   } = useForm<z.input<typeof planFormSchema>>({
     defaultValues: {
       ...props.plan,
+      startValidity: props.plan?.startValidity ? new Date(props.plan.startValidity).toLocaleDateString() : undefined,
+      endValidity: props.plan?.endValidity ? new Date(props.plan.endValidity).toLocaleDateString() : undefined,
+      active: props.plan?.active ?? false,
       planValue: props.plan?.priceInCents ? (props.plan?.priceInCents / 100).toString() : 0,
       cancelValue: props.plan?.amountDailyCancellationInCents
         ? (props.plan?.amountDailyCancellationInCents / 100).toString()
@@ -75,17 +82,18 @@ export function PlanForm(props: PlanFormProps) {
 
   const onSubmit = async (formData: z.input<typeof planFormSchema>) => {
     console.log(formData)
+    handleRequest({})
   }
 
   useEffect(() => {
-    console.log(errors)
-  }, [errors])
+    console.log("Request de criação", data)
+  }, [data])
 
   console.log(watch())
   return (
     <div className="z-6">
       <DialogComponent open={showDialog} onOpenChange={onDialogChange}>
-        <DialogContent className="max-w-[600px]">
+        <DialogContent className="max-w-[600px] w-[400px] md:w-[600px]">
           <DialogHeader>
             <DialogTitle className="flex gap-2 items-center font-extrabold text-2xl">
               {props.plan ? "Editar Plano" : "Novo Plano"}
