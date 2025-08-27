@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 import { Eye } from "lucide-react"
 
@@ -16,10 +16,14 @@ import { GarageTableHeader } from "@src/features/garages/components/garage-table
 
 export function GaragesTable() {
   const [selectedGarage, setSelectedGarage] = useState<GarageType | undefined>()
-  const { handleRequest, data, error, isLoading } = useGetGarages()
+  const { handleRequest, data, isLoading } = useGetGarages()
 
   useEffect(() => {
     handleRequest({ pageSize: 10, currentPage: 1 })
+  }, [])
+
+  const handleSearch = useCallback((searchValue: string) => {
+    handleRequest({ garageName: searchValue, pageSize: 10, currentPage: 1 })
   }, [])
 
   const columns: ColumnConfig<GarageType>[] = [
@@ -42,7 +46,7 @@ export function GaragesTable() {
 
   return (
     <div className="w-full">
-      <GarageTableHeader recordsCount={data?.countRecords} />
+      <GarageTableHeader recordsCount={data?.countRecords} onSearch={handleSearch} />
       {isLoading ? (
         <GaragesTableSkeleton />
       ) : (
