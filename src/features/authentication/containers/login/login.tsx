@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image"
-import { useActionState } from "react"
 
 import { useForm, SubmitHandler } from "react-hook-form"
 import { User, Lock } from "lucide-react"
@@ -12,7 +11,7 @@ import { Input, Button } from "@src/components/ui"
 import { LoginForm } from "@src/domain/interfaces/auth"
 
 export default function Login() {
-  const { handleLogIn, isLoading } = useLogin()
+  const { handleLogIn, isLoading, hasError } = useLogin()
 
   const loginSchema = z.object({
     username: z.string().min(4, "Usuário é obrigatório"),
@@ -40,11 +39,27 @@ export default function Login() {
           <span className="font-bold text-sm">Entre com suas credenciais para acessar o sitema</span>
         </div>
         <div className="flex gap-4 flex-col">
-          <Input label="Usuário" placeholder="Digite seu usuário" icon={User} {...register("username")} />
-          <Input type="password" label="Senha" placeholder="Digite sua senha" icon={Lock} {...register("password")} />
+          <Input
+            label="Usuário"
+            placeholder="Digite seu usuário"
+            icon={User}
+            {...register("username")}
+            aria-invalid={!!errors.username}
+          />
+          {errors.username && <span className="text-sm text-red-400">{errors.username.message}</span>}
+          <Input
+            type="password"
+            label="Senha"
+            placeholder="Digite sua senha"
+            icon={Lock}
+            {...register("password")}
+            aria-invalid={!!errors.password}
+          />
+          {errors.password && <span className="text-sm text-red-400">{errors.password.message}</span>}
           <Button disabled={isLoading} isLoading={isLoading} type="submit">
             Entrar
           </Button>
+          {hasError && <span className="text-sm text-red-400">Não foi possível efetuar o login.</span>}
         </div>
       </div>
     </form>

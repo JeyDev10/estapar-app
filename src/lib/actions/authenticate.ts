@@ -8,17 +8,9 @@ import { auth, signIn, signOut as signOutCallback } from "@/auth"
 
 export async function authenticate(loginForm: LoginForm) {
   try {
-    await signIn("credentials", loginForm)
+    await signIn("credentials", { ...loginForm, redirect: false })
   } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case "CredentialsSignin":
-          return "Invalid credentials."
-        default:
-          return "Something went wrong."
-      }
-    }
-    redirect("/")
+    throw error
   }
 }
 
@@ -43,6 +35,6 @@ export async function getAuth() {
     const userAuth = await auth()
     return userAuth
   } catch (error) {
-    console.error(error)
+    throw error
   }
 }

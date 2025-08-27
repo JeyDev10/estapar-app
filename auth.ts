@@ -21,7 +21,7 @@ async function authenticate(username: string, password: string) {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/Authenticate`, {
       body: JSON.stringify({ username, password }),
-      method: "post",
+      method: "POST",
       headers: { "Content-Type": "application/json" }
     })
 
@@ -77,7 +77,7 @@ export const authOptions: NextAuthConfig = {
         if (isLoggedIn) return true
         return false
       } else if (isLoggedIn) {
-        return Response.redirect(new URL("/"))
+        return Response.redirect(new URL("/", nextUrl))
       }
       return true
     }
