@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import { LoaderCircle, CircleCheck } from "lucide-react"
 import { useForm, Controller } from "react-hook-form"
