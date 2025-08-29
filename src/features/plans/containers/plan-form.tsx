@@ -12,6 +12,7 @@ import {
   DialogHeader,
   DialogTitle
 } from "@src/components/ui/dialog/base/dialog"
+import { SuccessStatus } from "@src/features/plans/components/success-status"
 
 import { PlanType } from "@/src/domain/interfaces/plans"
 
@@ -41,24 +42,16 @@ export function PlanForm(props: PlanFormProps) {
   return (
     <div className="z-6">
       <DialogComponent open={showDialog} onOpenChange={onDialogChange}>
-        {showSuccessMessage ? (
-          <DialogContent className="max-w-[600px] w-[400px] md:w-[600px] min-h-[30vh]">
+        <DialogContent className="max-w-[600px] w-[400px] md:w-[600px] min-h-[30vh]">
+          <DialogHeader>
             <DialogTitle className="flex gap-2 items-center font-extrabold text-2xl">
               {props.plan ? "Editar Plano" : "Novo Plano"}
             </DialogTitle>
-            <div className="w-full h-full flex flex-col items-center justify-center">
-              <CircleCheck className="text-brand-tertiary animate-bounce h-10 w-10" />
-              <span className="text-3xl">Plano Criado com sucesso!</span>
-            </div>
-          </DialogContent>
-        ) : (
-          <DialogContent className="max-w-[600px] w-[400px] md:w-[600px]">
-            <DialogHeader>
-              <DialogTitle className="flex gap-2 items-center font-extrabold text-2xl">
-                {props.plan ? "Editar Plano" : "Novo Plano"}
-              </DialogTitle>
-              <DialogDescription>Preencha os dados para criar um novo plano.</DialogDescription>
-            </DialogHeader>
+            {!showSuccessMessage && <DialogDescription>Preencha os dados para criar um novo plano.</DialogDescription>}
+          </DialogHeader>
+          {showSuccessMessage ? (
+            <SuccessStatus />
+          ) : (
             <form onSubmit={handleSubmit}>
               <div className="grid gird-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col w-full">
@@ -183,8 +176,8 @@ export function PlanForm(props: PlanFormProps) {
                 </Button>
               </div>
             </form>
-          </DialogContent>
-        )}
+          )}
+        </DialogContent>
       </DialogComponent>
     </div>
   )
