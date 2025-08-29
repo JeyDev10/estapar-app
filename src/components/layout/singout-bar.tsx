@@ -3,7 +3,6 @@ import { LogOut, User } from "lucide-react"
 
 import { Button } from "@src/components/ui/button"
 import { signOut } from "@/src/lib/actions/authenticate"
-import { useEffect } from "react"
 
 export type SignoutBarProps = {
   username: string

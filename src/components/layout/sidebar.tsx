@@ -8,7 +8,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarHeader,
-  SidebarProvider,
   SidebarTrigger,
   SidebarMenu,
   SidebarMenuItem,
@@ -29,7 +28,7 @@ export function LayoutSidebar() {
         </SidebarHeader>
         <SidebarContent className="relative">
           <SidebarGroup>
-            <SidebarMenu>
+            <SidebarMenu className="mt-4">
               <SidebarMenuItem className="w-full">
                 <SidebarMenuButton
                   asChild
@@ -39,7 +38,7 @@ export function LayoutSidebar() {
                 >
                   <div>
                     <Building2 size={20} />
-                    <span> Garagens</span>
+                    <span className="font-bold"> Garagens</span>
                   </div>
                 </SidebarMenuButton>
               </SidebarMenuItem>

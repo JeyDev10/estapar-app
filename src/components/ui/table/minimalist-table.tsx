@@ -6,7 +6,7 @@ import { Button } from "@src/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@src/components/ui/table/base/table"
 import { TableWrapper, TableProps } from "@src/components/ui/table/base/table-wrapper"
 
-export function RoundedDataTable<T>({ isPaginated = true, ...props }: TableProps<T>) {
+export function MinimalistDataTable<T>({ ...props }: TableProps<T>) {
   return (
     <div className="w-full border-2 border-gray-tertiary rounded-lg">
       <TableWrapper {...props}>
@@ -49,23 +49,6 @@ export function RoundedDataTable<T>({ isPaginated = true, ...props }: TableProps
                   )}
                 </TableBody>
               </Table>
-            )}
-
-            {isPaginated && (
-              <div className="flex items-center justify-end space-x-2 py-4">
-                <div className="space-x-2">
-                  <Button
-                    size="sm"
-                    onClick={() => tableSettings.previousPage()}
-                    disabled={!tableSettings.getCanPreviousPage()}
-                  >
-                    Previous
-                  </Button>
-                  <Button size="sm" onClick={() => tableSettings.nextPage()} disabled={!tableSettings.getCanNextPage()}>
-                    Next
-                  </Button>
-                </div>
-              </div>
             )}
           </>
         )}

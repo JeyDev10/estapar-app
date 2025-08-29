@@ -1,2 +1,2 @@
 export * from "./table"
-export * from "./rounded-table"
+export * from "./minimalist-table"

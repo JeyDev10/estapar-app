@@ -8,15 +8,9 @@ export function GaragesTableSkeleton() {
   return (
     <div className="flex justify-center antialiased w-full overflow-x-scroll">
       <div className="w-full min-w-[950px]">
-        <div data-slot="table-container" className="relative w-full overflow-x-auto">
-          <table
-            data-slot="table"
-            className="w-full caption-bottom text-sm rounded-md border border-gray-tertiary min-w-[950px]"
-          >
-            <thead
-              data-slot="table-header"
-              className="[&_tr]:border-b-2 border-t border-t-gray-tertiary text-gray-secondary"
-            >
+        <div data-slot="table-container" className="relative w-full border border-gray-tertiary rounded-lg">
+          <table data-slot="table" className="w-full caption-bottom text-sm rounded-lg border-none min-w-[950px]">
+            <thead data-slot="table-header">
               <tr
                 data-slot="table-row"
                 className="data-[state=selected]:bg-muted transition-colors border-b-gray-tertiary border-b"

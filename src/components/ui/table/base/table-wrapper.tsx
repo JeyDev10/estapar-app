@@ -3,7 +3,6 @@
 import { useMemo, ReactNode } from "react"
 import {
   ColumnDef,
-  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
@@ -23,10 +22,9 @@ export type TableProps<T> = {
   data: T[]
   columns: ColumnConfig<T>[]
   sort?: TableSort
-  isPaginated?: boolean
 } & { children?(tableState: Table<T>): ReactNode }
 
-export function TableWrapper<T>({ isPaginated = true, ...props }: TableProps<T>) {
+export function TableWrapper<T>({ ...props }: TableProps<T>) {
   const formattedColumns: ColumnDef<T>[] = useMemo(() => {
     return props.columns.map((column) => ({
       accessorKey: column.id,

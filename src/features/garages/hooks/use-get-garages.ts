@@ -1,8 +1,6 @@
 "use client"
-import { useState } from "react"
-
 import { useService } from "@/src/services/use-service"
-import { GarageType, GarageListResponse } from "@/src/domain/interfaces/garage"
+import { GarageListResponse } from "@/src/domain/interfaces/garage"
 
 import { useRequest } from "@/src/hooks/use-request"
 

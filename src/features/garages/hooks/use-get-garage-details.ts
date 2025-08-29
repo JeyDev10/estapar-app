@@ -1,6 +1,4 @@
 "use client"
-import { useState } from "react"
-
 import { useService } from "@/src/services/use-service"
 import { GarageDetailsType } from "@/src/domain/interfaces/garage"
 

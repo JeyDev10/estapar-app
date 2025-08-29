@@ -3,7 +3,7 @@ import { useEffect } from "react"
 
 import { Plus, CircleDollarSign, SquarePen, Car } from "lucide-react"
 
-import { RoundedDataTable } from "@src/components/ui/table/rounded-table"
+import { MinimalistDataTable } from "@/src/components/ui/table/minimalist-table"
 import { Button, Badge } from "@/src/components/ui"
 import { useGetPlans } from "@src/features/plans/hooks/useGetPlans"
 
@@ -18,7 +18,7 @@ export type PlansTableProps = {
 }
 
 export function PlansTable(props: PlansTableProps) {
-  const { handleRequest, data, error, isLoading } = useGetPlans()
+  const { handleRequest, data, isLoading } = useGetPlans()
 
   useEffect(() => {
     handleRequest({ garageId: props.garageId })
@@ -51,7 +51,7 @@ export function PlansTable(props: PlansTableProps) {
     {
       id: "occupiedVacancie",
       header: "Ocupadas",
-      format: (row) => "0"
+      format: () => "0"
     },
     { id: "availableVacancie", header: "Disponíveis", format: (row) => row.totalVacancies.toString() },
     {
@@ -90,11 +90,7 @@ export function PlansTable(props: PlansTableProps) {
             Novo plano
           </Button>
         </div>
-        {isLoading ? (
-          <PlansTableSkeleton />
-        ) : (
-          <RoundedDataTable<PlanType> data={data || []} columns={columns} isPaginated={false} />
-        )}
+        {isLoading ? <PlansTableSkeleton /> : <MinimalistDataTable<PlanType> data={data || []} columns={columns} />}
       </div>
     </div>
   )

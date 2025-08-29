@@ -19,7 +19,7 @@ export function useLogin() {
     setHasError(false)
     try {
       await authenticate(loginForm)
-    } catch (error) {
+    } catch {
       setHasError(true)
     } finally {
       setIsLoading(false)

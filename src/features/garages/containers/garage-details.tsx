@@ -28,7 +28,7 @@ export function GarageDetails(props: GarageDetailsProps) {
   const [showCreateForm, setShowCreateForm] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState<PlanType | undefined>()
 
-  const { handleRequest, data, isLoading, error } = useGetGarage()
+  const { handleRequest, data, isLoading } = useGetGarage()
 
   function handleClose(show: boolean) {
     setShowDialog(show)
@@ -74,10 +74,6 @@ export function GarageDetails(props: GarageDetailsProps) {
 
   return (
     <>
-      {(selectedPlan || showCreateForm) && (
-        <PlanForm plan={selectedPlan} isCreateForm={showCreateForm} onClose={handleClosePlanForm} />
-      )}
-
       <DialogComponent open={showDialog} onOpenChange={handleClose}>
         <DialogContent className="max-w-[1280] w-full">
           <GarageDetailsHeader
@@ -119,6 +115,9 @@ export function GarageDetails(props: GarageDetailsProps) {
           <PlansTable garageId={props.garage.code} onOpenForm={handleOpenPlanForm} />
         </DialogContent>
       </DialogComponent>
+      {(selectedPlan || showCreateForm) && (
+        <PlanForm plan={selectedPlan} isCreateForm={showCreateForm} onClose={handleClosePlanForm} />
+      )}
     </>
   )
 }
