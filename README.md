@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **Next.js Project**
 
-## Getting Started
+Este projeto é uma aplicação [Next.js](https://nextjs.org) inicializada com [create-next-app](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-First, run the development server:
+## **🚀 Como Começar**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+Para rodar o servidor de desenvolvimento, execute um dos seguintes comandos no terminal:
+
+npm run dev  
+\# ou  
+yarn dev  
+\# ou  
+pnpm dev  
+\# ou  
 bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) no seu navegador para ver o resultado.
+Projeto rodando em produção utilizando a Vercel  [Link](https://estapar-app-one.vercel.app)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## **💻 Stack da Aplicação**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Next.js**: Utilizado para aproveitar recursos como autenticação, middleware e renderização híbrida.  
+* **Next-auth**: Uma excelente ferramenta para autenticação, simplificando o gerenciamento de sessões e segurança.  
+* **Zod & React Hook Form**: Juntas, oferecem uma maneira simples e direta de validar e gerenciar campos de formulários.  
+* **Tailwind CSS**: Escolhido para a estilização, devido ao seu *bundle* leve e facilidade de personalizar componentes.  
+* **Shadcn UI**: Componentes de UI nativos e totalmente personalizáveis, facilitando a adesão ao *design system* e a escalabilidade.  
+* **Cypress**: Utilizado para criar testes *end-to-end*, garantindo que a aplicação funcione como esperado e validando rapidamente as regras de negócio sem comprometer o prazo.
 
-## Learn More
+## **🏛️ Arquitetura do Projeto**
 
-To learn more about Next.js, take a look at the following resources:
+A arquitetura do projeto segue os padrões de roteamento do Next.js, mas com uma estrutura adicional para organização:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* **src/app**: A pasta principal que contém as páginas e layouts.  
+* **src/components/ui**: Componentes de UI sem regras de negócio.  
+* **src/domain**: Contém interfaces e constantes relacionadas às regras de negócio.  
+* **src/hooks**: Hooks customizados, comuns ao projeto.  
+* **src/lib**:  
+  * **actions**: Requisições executadas no lado do servidor.  
+  * **utils**: Funções de uso rotineiro.  
+* **src/services**: Camada com toda a lógica de negócio e implementações para requisições.  
+* **src/features**: A parte mais complexa, onde a lógica do sistema é implementada com base nas regras de domínio.
