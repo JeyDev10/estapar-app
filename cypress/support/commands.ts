@@ -8,11 +8,13 @@ declare namespace Cypress {
 
 Cypress.Commands.add("login", (username: string, password: string) => {
   cy.session([username, password], () => {
+    cy.intercept("/api/auth/session").as("getSession")
+
     cy.visit("/login")
     cy.get('input[name="username"]').type(username)
     cy.get('input[name="password"]').type(password)
     cy.get("form").submit()
-    cy.wait(7000)
+    cy.wait("@getSession")
     cy.get("h4").should("be.visible")
   })
 })
