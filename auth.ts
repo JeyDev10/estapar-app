@@ -77,7 +77,7 @@ export const authOptions: NextAuthConfig = {
         if (isLoggedIn) return true
         return false
       } else if (isLoggedIn) {
-        return Response.redirect(new URL("/", nextUrl))
+        return Response.redirect(new URL("/"))
       }
       return true
     }

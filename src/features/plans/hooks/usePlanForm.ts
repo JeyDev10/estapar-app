@@ -4,11 +4,12 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { useCreatePlan } from "@/src/features/plans/hooks/useCreatePlan"
+import { useCreatePlan } from "@src/features/plans/hooks/useCreatePlan"
 
-import { PlanType } from "@/src/domain/interfaces/plans"
+import { PlanType } from "@src/domain/interfaces/plans"
+import { ERROR_MESSAGES } from "@src/domain/constants/error-messages"
 
-import { dateUtils } from "@/src/lib/utils/date-utils"
+import { dateUtils } from "@src/lib/utils/date-utils"
 
 export type PlanFormType = Omit<PlanType, "amountDailyCancellationInCents" | "priceInCents"> & {
   planValue: string
@@ -29,26 +30,28 @@ export function usePlanForm(props: UsePlanFormProps) {
   })
 
   const planFormSchema = z.object({
-    veichleType: z.coerce.number("Selecione um tipo de veículo."),
+    veichleType: z.coerce.number(ERROR_MESSAGES.NUMBER.VEHICLE_TYPE),
     active: z.boolean(),
     cancelValue: z.coerce
-      .number("Adicione o valor do cancelamento. ")
-      .nonnegative("O valor do cancelamento não pode ser negativo."),
+      .number(ERROR_MESSAGES.NUMBER.CANCEL_VALUE)
+      .nonnegative(ERROR_MESSAGES.NUMBER.NON_NEGATIVE.CANCEL_VALUE),
     planValue: z.coerce
-      .number("Adicione o valor do plano.")
-      .nonnegative("O valor do cancelamento não pode ser negativo."),
-    description: z.string("Adicione uma descrição").nonempty("Adicione uma descrição"),
+      .number(ERROR_MESSAGES.NUMBER.PLAN_VALUE)
+      .nonnegative(ERROR_MESSAGES.NUMBER.NON_NEGATIVE.PLAN_VALUE),
+    description: z.string(ERROR_MESSAGES.STRING.DESCRIPTION_EMPTY).nonempty(ERROR_MESSAGES.STRING.DESCRIPTION_EMPTY),
     endValidity: z
-      .string("Adicione uma data válida.")
-      .refine(dateUtils.validateDateString, { error: "Adicione uma data válida." })
+      .string(ERROR_MESSAGES.DATE.INVALID_DATE)
+      .refine(dateUtils.validateDateString, { error: ERROR_MESSAGES.DATE.INVALID_DATE })
       .nullish(),
-    startValidity: z.string().refine(dateUtils.validateDateString, { error: "Adicione uma data válida." }),
+    startValidity: z
+      .string(ERROR_MESSAGES.DATE.INVALID_DATE)
+      .refine(dateUtils.validateDateString, { error: ERROR_MESSAGES.DATE.INVALID_DATE }),
     totalVacancies: z.preprocess((val) => {
       if (typeof val === "string" && val.trim() === "") {
         return undefined
       }
       return val
-    }, z.coerce.number("Adicione um total de vagas.").nonnegative("O total de vagas não pode ser negativo."))
+    }, z.coerce.number(ERROR_MESSAGES.NUMBER.TOTAL_VACANCIES).nonnegative(ERROR_MESSAGES.NUMBER.NON_NEGATIVE.TOTAL_VACANCIES))
   })
 
   const {

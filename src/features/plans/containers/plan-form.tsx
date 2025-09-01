@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 
-import { LoaderCircle, CircleCheck } from "lucide-react"
+import { LoaderCircle } from "lucide-react"
 import { Controller } from "react-hook-form"
 
 import { Button, Input, Switch, Select, DatePicker } from "@src/components/ui"

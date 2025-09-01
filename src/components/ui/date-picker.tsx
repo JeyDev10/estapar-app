@@ -21,9 +21,10 @@ export function DatePicker(props: DatePickerProps) {
 
   useEffect(() => {
     if (props.defaultValue) {
+      console.log("here")
       setDate(props.defaultValue)
     }
-  }, [props.defaultValue])
+  }, [])
 
   return (
     <div className="flex flex-col gap-3">
@@ -44,6 +45,7 @@ export function DatePicker(props: DatePickerProps) {
             selected={date}
             captionLayout="dropdown"
             onSelect={(date: Date | undefined) => {
+              console.log("Date teste:", date?.toLocaleDateString())
               props.onChangeDate?.(date?.toLocaleDateString())
               setDate(date)
               setOpen(false)

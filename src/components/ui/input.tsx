@@ -1,10 +1,10 @@
-import * as React from "react"
+import { ComponentProps } from "react"
 
 import { LucideIcon } from "lucide-react"
 
 import { cn } from "@src/lib/utils/style-utils"
 
-export type InputProps = React.ComponentProps<"input"> & { label?: string; icon?: LucideIcon }
+export type InputProps = ComponentProps<"input"> & { label?: string; icon?: LucideIcon }
 
 function Input({ className, type, label, icon, ...props }: InputProps) {
   const Icon = icon
