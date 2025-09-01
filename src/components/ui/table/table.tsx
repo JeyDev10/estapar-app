@@ -35,7 +35,11 @@ export function DataTable<T>({ ...props }: TableProps<T>) {
                       tableSettings.getRowModel?.().rows.map((row) => (
                         <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                           {row.getVisibleCells().map((cell) => (
-                            <TableCell className="truncate max-w-[50px]" key={cell.id}>
+                            <TableCell
+                              title={cell.getValue() as string}
+                              className="truncate max-w-[50px]"
+                              key={cell.id}
+                            >
                               {flexRender(cell.column.columnDef.cell, cell.getContext())}
                             </TableCell>
                           ))}

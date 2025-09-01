@@ -34,7 +34,7 @@ export function MinimalistDataTable<T>({ ...props }: TableProps<T>) {
                     tableSettings.getRowModel().rows.map((row) => (
                       <TableRow className="border-none" key={row.id} data-state={row.getIsSelected() && "selected"}>
                         {row.getVisibleCells().map((cell) => (
-                          <TableCell className="truncate max-w-[100px]" key={cell.id}>
+                          <TableCell title={cell.getValue() as string} className="truncate max-w-[100px]" key={cell.id}>
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                           </TableCell>
                         ))}
